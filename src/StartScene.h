@@ -35,6 +35,17 @@ private:
 	void m_ImGuiKeyMap();
 	void m_ImGuiSetStyle();
 	void m_updateUI();
+
+	// Physics Variables
+	float m_Gravity = 9.8f;
+	int m_PPM = 5; // pixels per meter
+	glm::vec2 m_position = glm::vec2(0.0, 0.0);
+	glm::vec2 m_velocity = glm::vec2(0.0, 0.0);
+	glm::vec2 m_acceleration = glm::vec2(0.0, 0.0);
+
+	//Physics functions
+	void m_move();
+
 };
 
 #endif /* defined (__START_SCENE__) */

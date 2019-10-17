@@ -31,6 +31,9 @@ void StartScene::draw()
 
 void StartScene::update()
 {
+	m_move(); 
+	m_pShip->update(); 
+
 	if (m_displayUI)
 	{
 		m_updateUI();
@@ -144,17 +147,11 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
+	m_position = glm::vec2(50.0f, 50.0f);
 	m_pShip = new Ship();
-	m_pShip->setParent(this);
+	m_pShip->setPosition(m_position);
 	addChild(m_pShip); 
-	/*SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
-	m_pStartLabel->setParent(this);
-	addChild(m_pStartLabel);
-
-	m_pInstructionsLabel = new Label("Press 1 to Play", "Dock51", 40, blue, glm::vec2(400.0f, 120.0f));
-	m_pInstructionsLabel->setParent(this);
-	addChild(m_pInstructionsLabel);*/
+	
 }
 
 void StartScene::m_ImGuiKeyMap()
@@ -273,10 +270,10 @@ void StartScene::m_updateUI()
 
 	if (m_displayAbout)
 	{
-		ImGui::Begin("About Pathfinding Simulator", &m_displayAbout, ImGuiWindowFlags_AlwaysAutoResize);
+		ImGui::Begin("About Physics Simulator", &m_displayAbout, ImGuiWindowFlags_AlwaysAutoResize);
 		ImGui::Separator();
 		ImGui::Text("Authors:");
-		ImGui::Text("Tom Tsiliopoulos ");
+		ImGui::Text("Nabil Babu");
 		ImGui::End();
 	}
 
@@ -482,4 +479,13 @@ void StartScene::m_updateUI()
 
 	// Main Window End
 	ImGui::End();
+}
+
+void StartScene::m_move()
+{
+	m_acceleration = glm::vec2(0.0f, 0.5 * m_Gravity * m_PPM);
+
+	m_position = m_pShip->getPosition() + m_velocity + m_acceleration;
+
+	m_pShip->setPosition(m_position); 
 }
