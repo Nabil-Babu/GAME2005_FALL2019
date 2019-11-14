@@ -42,6 +42,7 @@ private:
 	const float Rad2Deg = 57.2957795130f;
 	bool m_isGravityEnabled = false;
 	float m_Gravity = 9.8f;
+	float m_HorizontalWind = 0.0f;
 	float m_PPM = 10; // pixels per meter
 	glm::vec2 m_initialPosition = glm::vec2(0.0f, 0.0f);
 	float m_velocity = 0.0f;

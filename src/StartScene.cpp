@@ -299,6 +299,7 @@ void StartScene::m_updateUI()
 		m_velocity = 0.0f;
 		m_velocityX = 0.0f;
 		m_velocityY = 0.0f;
+		m_HorizontalWind = 0.0f;
 	}
 
 	ImGui::PushItemWidth(80);
@@ -318,6 +319,11 @@ void StartScene::m_updateUI()
 	}
 
 	if (ImGui::SliderFloat("Velocity", &m_velocity, 0.0f, 200.0f, "%.1f"))
+	{
+
+	}
+
+	if (ImGui::SliderFloat("Horizontal Wind Acceleration", &m_HorizontalWind, -30.0f, 30.0f, "%.1f"))
 	{
 
 	}
@@ -525,7 +531,7 @@ void StartScene::m_move()
 	glm::vec2 velocity_vector = glm::vec2(m_velocityX, -m_velocityY);
 
 
-	m_acceleration = glm::vec2(0.0f, m_Gravity) * m_PPM;
+	m_acceleration = glm::vec2(m_HorizontalWind, m_Gravity) * m_PPM;
 
 
 	m_finalPosition = m_pShip->getPosition() + 
