@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "Label.h"
 #include "ship.h"
+#include <cmath>
 
 class StartScene : public Scene
 {
@@ -37,11 +38,21 @@ private:
 	void m_updateUI();
 
 	// Physics Variables
+	const float Deg2Rad = 0.0174532925f;
+	const float Rad2Deg = 57.2957795130f;
+	bool m_isGravityEnabled = false;
 	float m_Gravity = 9.8f;
-	int m_PPM = 5; // pixels per meter
-	glm::vec2 m_position = glm::vec2(0.0, 0.0);
-	glm::vec2 m_velocity = glm::vec2(0.0, 0.0);
-	glm::vec2 m_acceleration = glm::vec2(0.0, 0.0);
+	float m_PPM = 10; // pixels per meter
+	glm::vec2 m_initialPosition = glm::vec2(0.0f, 0.0f);
+	float m_velocity = 0.0f;
+	float m_velocityX = 0.0f;
+	float m_velocityY = 0.0f;
+	glm::vec2 m_acceleration = glm::vec2(0.0f, 0.0f);
+	glm::vec2 m_finalPosition = glm::vec2(0.0f, 0.0f);
+	float m_time = 0.016667f; // approx 16 ms
+	float m_ATime = 0.016667f; // accumulated time
+
+	float m_angle = 0.0f; // the kicking angle
 
 	//Physics functions
 	void m_move();
