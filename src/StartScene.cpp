@@ -43,8 +43,6 @@ void StartScene::update()
 
 void StartScene::clean()
 {
-	/*delete m_pStartLabel;
-	delete m_pInstructionsLabel;*/
 	delete m_pShip;
 	removeAllChildren();
 }
@@ -283,7 +281,7 @@ void StartScene::m_updateUI()
 	}
 
 	/*************************************************************************************************/
-	if (ImGui::Button("Toggle Gravity"))
+	if (ImGui::Button("Run Simulation"))
 	{
 		m_isGravityEnabled = (m_isGravityEnabled) ? false : true;
 	}
@@ -323,7 +321,6 @@ void StartScene::m_updateUI()
 	{
 
 	}
-
 	//ImGui::SameLine();
 
 	//if (ImGui::Button("Respawn Planet"))
@@ -523,9 +520,6 @@ void StartScene::m_updateUI()
 
 void StartScene::m_move()
 {
-	 // Pf = Pi + Vi + 1/2At^2 
-	 // Pfx = Pxi + Vxi + 1/2Axt^2
-
 	m_velocityX = (m_velocity*m_PPM) * cos(m_angle * Deg2Rad);
 	m_velocityY = (m_velocity*m_PPM) * sin(m_angle * Deg2Rad);
 	glm::vec2 velocity_vector = glm::vec2(m_velocityX, -m_velocityY);
