@@ -150,7 +150,7 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	m_initialPosition = glm::vec2(25, Config::SCREEN_HEIGHT-25);
+	m_initialPosition = glm::vec2(25, Config::SCREEN_HEIGHT-30);
 	m_pShip = new Ship();
 	m_pShip->setPosition(m_initialPosition);
 	addChild(m_pShip); 
